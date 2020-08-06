@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.1.1" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.1.1" type="image/png" sizes="32x32"><meta name="description" content="git的常用场景总结                           初始化项目并提交        git init 初始化项目 git add . 添加文件&#x2F;目录 git commit -m &quot;描述&quot; 添加到本地版本库 git remote add [别名] [远程仓库地址] 将git推送到远程版本库 git push [远程主机名] [本地分支名">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git的常用方法总结">
+<meta property="og:url" content="https://qrqaccount.github.io/2020/08/06/git%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="QRQ&#39;s Blog">
+<meta property="og:description" content="git的常用场景总结                           初始化项目并提交        git init 初始化项目 git add . 添加文件&#x2F;目录 git commit -m &quot;描述&quot; 添加到本地版本库 git remote add [别名] [远程仓库地址] 将git推送到远程版本库 git push [远程主机名] [本地分支名">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-08-06T08:06:38.000Z">
+<meta property="article:modified_time" content="2020-08-06T09:12:50.333Z">
+<meta property="article:author" content="QRQ">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary"><title>git的常用方法总结 | QRQ's Blog</title><link ref="canonical" href="https://qrqaccount.github.io/2020/08/06/git%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.1.1"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.0.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Tags</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">QRQ's Blog</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">git的常用方法总结</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-06</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-08-06</span></span></div></header><div class="post-body">
+        <h1 id="git的常用场景总结"   >
+          <a href="#git的常用场景总结" class="heading-link"><i class="fas fa-link"></i></a>git的常用场景总结</h1>
+      
+        <h2 id="初始化项目并提交"   >
+          <a href="#初始化项目并提交" class="heading-link"><i class="fas fa-link"></i></a>初始化项目并提交</h2>
+      <ol>
+<li><code>git init</code> 初始化项目</li>
+<li><code>git add .</code> 添加文件/目录</li>
+<li><code>git commit -m &quot;描述&quot;</code> 添加到本地版本库</li>
+<li><code>git remote add [别名] [远程仓库地址]</code> 将git推送到远程版本库</li>
+<li><code>git push [远程主机名] [本地分支名]:[远程分支名]</code> 将本地分支的git推送到指定远程主机的指定分支 <ul>
+<li><code>git push -u [指定默认主机名] [本地分支名]:[远程分支名]</code>这样可以添加一个默认的主机，在之后的<code>git push</code>中可以不再使用参数<a id="more"></a>
+
+</li>
+</ul>
+</li>
+</ol>
+
+        <h2 id="分支代码合并"   >
+          <a href="#分支代码合并" class="heading-link"><i class="fas fa-link"></i></a>分支代码合并</h2>
+      
+        <h3 id="使用merge"   >
+          <a href="#使用merge" class="heading-link"><i class="fas fa-link"></i></a>使用merge</h3>
+      <p>以将分支dev代码合并到master分支为例</p>
+<ol>
+<li><code>git branch</code> 查看当前分支</li>
+<li><code>git check out master</code> 切换到master分支</li>
+<li><code>git pull [远程主机名] master</code> 将远程master分支pull下来</li>
+<li><code>git merge dev</code> 将dev分支代码合并到master上</li>
+<li><code>git status</code> 查看是否有冲突</li>
+<li><code>git push [远程主机名] master</code> 提交master代码</li>
+<li><code>git checkout dev</code> 切换回dev分支进行开发<ul>
+<li><code>git checkout [hash]</code> 切换回指定历史版本 </li>
+</ul>
+</li>
+</ol>
+
+        <h3 id="使用rebase"   >
+          <a href="#使用rebase" class="heading-link"><i class="fas fa-link"></i></a>使用rebase</h3>
+      <p>以master分支经过一次hotfix后将master分支合并到dev为例</p>
+<blockquote>
+<p><strong>注意!!!</strong>:在公共分支上最好不要使用rebase这将修改提交历史，对多人协作可能造成影响</p>
+</blockquote>
+<ol>
+<li><code>git branch</code> 查看当前分支</li>
+<li><code>git check out dev</code> 切换到dev分支</li>
+<li><code>git rebase master</code> </li>
+<li>如果有冲突，解决之后根据提示使用<code>git add .</code>保存更改，但是不要提交，而是使用<code>git rebase --continue</code>，这时候commit ID又会回到dev分支</li>
+</ol>
+
+        <h2 id="删除分支"   >
+          <a href="#删除分支" class="heading-link"><i class="fas fa-link"></i></a>删除分支</h2>
+      
+        <h3 id="删除本地分支"   >
+          <a href="#删除本地分支" class="heading-link"><i class="fas fa-link"></i></a>删除本地分支</h3>
+      <ul>
+<li><code>git branch -d [分支名称]</code> -d即–delete删除分支时,该分支必须完全和它的上游分支完成merge,如果没有上游分支,必须要和HEAD完全merge</li>
+<li><code>git branch -D [分支名称]</code> –delete –force可以在不检查merge状态的情况下删除分支</li>
+<li><code>git branch -f [分支名称]</code> –force将当前branch重置到初始状态</li>
+</ul>
+
+        <h3 id="删除远程分支"   >
+          <a href="#删除远程分支" class="heading-link"><i class="fas fa-link"></i></a>删除远程分支</h3>
+      <p><code>git push origin --delete branch</code> 会一同删除追踪分支</p>
+
+        <h3 id="删除追踪分支"   >
+          <a href="#删除追踪分支" class="heading-link"><i class="fas fa-link"></i></a>删除追踪分支</h3>
+      <p><code>git branch --delete --remotes &lt;remote&gt;/&lt;branch&gt;</code> 可以删除追踪分支,该操作并没有真正删除远程分支,而是删除的本地分支和远程分支的关联关系</p>
+
+        <h3 id="删除已经合并到master的分支"   >
+          <a href="#删除已经合并到master的分支" class="heading-link"><i class="fas fa-link"></i></a>删除已经合并到master的分支</h3>
+      <p><code>git branch --merged master | grep -v &#39;^[ *]*master$&#39; | xargs git branch -d</code><br><em>原理：</em> </p>
+<ol>
+<li><code>git branch --merged master</code> 列出所有已经合并到master的分支</li>
+<li><code>grep -v &#39;^[ *]*master$&#39;</code> 在其中排除master分支</li>
+<li><code>xargs git branch -d</code> 删除分支</li>
+</ol>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ END ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Author: </span><span class="copyright-author__value"><a href="https://qrqaccount.github.io">QRQ</a></span></div><div class="copyright-link"><span class="copyright-link__name">Link: </span><span class="copyright-link__value"><a href="https://qrqaccount.github.io/2020/08/06/git%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">https://qrqaccount.github.io/2020/08/06/git%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> unless stating additionally</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://qrqaccount.github.io/tags/git/">git</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2020/08/05/golang%E5%8D%8F%E7%A8%8B/"><span class="paginator-prev__text">协程</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Catalog</span><span class="sidebar-nav-ov">Overview</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#git%E7%9A%84%E5%B8%B8%E7%94%A8%E5%9C%BA%E6%99%AF%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">
+          git的常用场景总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE%E5%B9%B6%E6%8F%90%E4%BA%A4"><span class="toc-number">1.1.</span> <span class="toc-text">
+          初始化项目并提交</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E4%BB%A3%E7%A0%81%E5%90%88%E5%B9%B6"><span class="toc-number">1.2.</span> <span class="toc-text">
+          分支代码合并</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8merge"><span class="toc-number">1.2.1.</span> <span class="toc-text">
+          使用merge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8rebase"><span class="toc-number">1.2.2.</span> <span class="toc-text">
+          使用rebase</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF"><span class="toc-number">1.3.</span> <span class="toc-text">
+          删除分支</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF"><span class="toc-number">1.3.1.</span> <span class="toc-text">
+          删除本地分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="toc-number">1.3.2.</span> <span class="toc-text">
+          删除远程分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%BF%BD%E8%B8%AA%E5%88%86%E6%94%AF"><span class="toc-number">1.3.3.</span> <span class="toc-text">
+          删除追踪分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%B7%B2%E7%BB%8F%E5%90%88%E5%B9%B6%E5%88%B0master%E7%9A%84%E5%88%86%E6%94%AF"><span class="toc-number">1.3.4.</span> <span class="toc-text">
+          删除已经合并到master的分支</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/image/42197951.png" alt="avatar"></div><p class="sidebar-ov-author__text">如果不是擅长的领域那么就不要随意发表意见,老老实实做事,实践是检验真理的唯一标准</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">3</div><div class="sidebar-ov-state-item__name">Archives</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">2</div><div class="sidebar-ov-state-item__name">Categories</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">4</div><div class="sidebar-ov-state-item__name">Tags</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">You have read </span><span class="sidebar-reading-info__num">0</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2020</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>QRQ</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.0.0</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.1.1</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.1.1"></script><script src="/js/stun-boot.js?v=2.1.1"></script><script src="/js/scroll.js?v=2.1.1"></script><script src="/js/header.js?v=2.1.1"></script><script src="/js/sidebar.js?v=2.1.1"></script></body></html>
