@@ -1,5 +1,5 @@
 ---
-title: 协程
+title: golang协程
 date: 2020-08-05 15:36:09
 tags:
 - 协程
@@ -8,7 +8,7 @@ categories:
 - golang
 ---
 
-# 协程
+# golang协程
 
 协程可以理解为一种用户态的轻量级线程。协程类似于线程，但与线程有区别。协程并不受操作系统内核控制而是完全由程序所控制，即在用户态执行。例如在生产者-消费者模型中，可以由用户决定在什么时候暂停程序。
 
@@ -61,7 +61,7 @@ func main() {
 
 输出的效果和时间线类似于
 
-![](./协程/Goroutines-explained.png)
+![](./golang协程/Goroutines-explained.png)
 
 ## golang的信道
 
