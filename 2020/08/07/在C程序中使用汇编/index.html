@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.1.1" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.1.1" type="image/png" sizes="32x32"><meta name="description" content="在C中使用汇编                           使用场景        即使是C语言也无法操作的硬件，如寄存器 使用C后性能依旧不够,需要使用汇编进行优化                      使用方式                           使用内联汇编       在gcc中使用关键字asm以及它的宏定义__asm__">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在C程序中使用汇编">
+<meta property="og:url" content="https://qrqaccount.github.io/2020/08/07/%E5%9C%A8C%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B1%87%E7%BC%96/index.html">
+<meta property="og:site_name" content="QRQ&#39;s Blog">
+<meta property="og:description" content="在C中使用汇编                           使用场景        即使是C语言也无法操作的硬件，如寄存器 使用C后性能依旧不够,需要使用汇编进行优化                      使用方式                           使用内联汇编       在gcc中使用关键字asm以及它的宏定义__asm__">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-08-07T13:47:13.000Z">
+<meta property="article:modified_time" content="2020-08-12T09:50:22.847Z">
+<meta property="article:author" content="QRQ">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="汇编">
+<meta name="twitter:card" content="summary"><title>在C程序中使用汇编 | QRQ's Blog</title><link ref="canonical" href="https://qrqaccount.github.io/2020/08/07/%E5%9C%A8C%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B1%87%E7%BC%96/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.1.1"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.0.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Tags</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">QRQ's Blog</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">在C程序中使用汇编</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-07</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-08-12</span></span></div></header><div class="post-body">
+        <h1 id="在C中使用汇编"   >
+          <a href="#在C中使用汇编" class="heading-link"><i class="fas fa-link"></i></a>在C中使用汇编</h1>
+      
+        <h2 id="使用场景"   >
+          <a href="#使用场景" class="heading-link"><i class="fas fa-link"></i></a>使用场景</h2>
+      <ul>
+<li>即使是C语言也无法操作的硬件，如寄存器</li>
+<li>使用C后性能依旧不够,需要使用汇编进行优化</li>
+</ul>
+
+        <h2 id="使用方式"   >
+          <a href="#使用方式" class="heading-link"><i class="fas fa-link"></i></a>使用方式</h2>
+      
+        <h3 id="使用内联汇编"   >
+          <a href="#使用内联汇编" class="heading-link"><i class="fas fa-link"></i></a>使用内联汇编</h3>
+      <p>在gcc中使用关键字<code>asm</code>以及它的宏定义<code>__asm__</code>来声明内联汇编表达式,在使用中最好使用<code>__asm__</code>。在编译时使用<code>-masm</code>参数来指定汇编所用的方言</p>
+
+        <h4 id="可选项"   >
+          <a href="#可选项" class="heading-link"><i class="fas fa-link"></i></a>可选项:</h4>
+      <ul>
+<li><code>volatile</code> 对于任何asm块都是隐式选择<code>volatile</code></li>
+<li><code>inline</code> 会尽可能的减小汇编块所占大小</li>
+</ul>
+
+        <h4 id="汇编代码块"   >
+          <a href="#汇编代码块" class="heading-link"><i class="fas fa-link"></i></a>汇编代码块</h4>
+      <p>一串字符串形式的指令，GCC不会自行解析汇编程序指令，也不知道它们的含义，甚至不知道它们是否是有效的汇编程序输入。</p>
+
+        <h4 id="一个简单的例子"   >
+          <a href="#一个简单的例子" class="heading-link"><i class="fas fa-link"></i></a>一个简单的例子</h4>
+      <figure class="highlight c"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DebugBreak() __asm__(<span class="meta-string">&quot;int $3&quot;</span>)</span></span><br></pre></td></tr></table></div></figure>
+<p>C语言与汇编混编的扩展使用参考<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/gcc/Extended-Asm.html#Extended-Asm" >这里</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h3 id="调用汇编函数"   >
+          <a href="#调用汇编函数" class="heading-link"><i class="fas fa-link"></i></a>调用汇编函数</h3>
+      <p>函数调用的方式是固定的，所以只要以符合调用约定来编写汇编，即可使用C语言调用。</p>
+
+        <h4 id="调用约定"   >
+          <a href="#调用约定" class="heading-link"><i class="fas fa-link"></i></a>调用约定</h4>
+      <p>可以在linuxX64平台中使用<code>syscall</code>指令，函数调用时与以下寄存器相关</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th align="center">寄存器</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">rax</td>
+<td align="center">系统调用号,也是返回值地址</td>
+</tr>
+<tr>
+<td align="center">rdi</td>
+<td align="center">函数调用传递的第一个参数</td>
+</tr>
+<tr>
+<td align="center">rsi</td>
+<td align="center">函数调用传递的第二个参数</td>
+</tr>
+<tr>
+<td align="center">rdx</td>
+<td align="center">函数调用传递的第三个参数</td>
+</tr>
+<tr>
+<td align="center">rcx</td>
+<td align="center">函数调用传递的第四个参数</td>
+</tr>
+<tr>
+<td align="center">r8</td>
+<td align="center">函数调用传递的第五个参数</td>
+</tr>
+<tr>
+<td align="center">r9</td>
+<td align="center">函数调用传递的第六个参数</td>
+</tr>
+</tbody></table></div>
+<p>当多于六个参数时,从右向左放入栈中。</p>
+
+        <h4 id="例子"   >
+          <a href="#例子" class="heading-link"><i class="fas fa-link"></i></a>例子</h4>
+      <p>add.S文件</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    .text</span><br><span class="line">    .globl    add</span><br><span class="line">    .type    add, @function</span><br><span class="line">add:</span><br><span class="line">    leal (%rdi,%rsi),%eax</span><br><span class="line">    ret</span><br></pre></td></tr></table></div></figure>
+
+<p>main.c文件</p>
+<figure class="highlight c"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, add(<span class="number">4</span>, <span class="number">6</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>编译命令</p>
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc main.c add.S -o main</span><br></pre></td></tr></table></div></figure>
+
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ END ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Author: </span><span class="copyright-author__value"><a href="https://qrqaccount.github.io">QRQ</a></span></div><div class="copyright-link"><span class="copyright-link__name">Link: </span><span class="copyright-link__value"><a href="https://qrqaccount.github.io/2020/08/07/%E5%9C%A8C%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B1%87%E7%BC%96/">https://qrqaccount.github.io/2020/08/07/%E5%9C%A8C%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B1%87%E7%BC%96/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> unless stating additionally</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://qrqaccount.github.io/tags/C/">C</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://qrqaccount.github.io/tags/%E6%B1%87%E7%BC%96/">汇编</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2020/08/06/%E4%BD%BF%E7%94%A8C%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B(1)/"><span class="paginator-prev__text">使用C实现协程(一)</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Catalog</span><span class="sidebar-nav-ov">Overview</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%A8C%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B1%87%E7%BC%96"><span class="toc-number">1.</span> <span class="toc-text">
+          在C中使用汇编</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">
+          使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">
+          使用方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96"><span class="toc-number">1.2.1.</span> <span class="toc-text">
+          使用内联汇编</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E9%80%89%E9%A1%B9"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">
+          可选项:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">
+          汇编代码块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">
+          一个简单的例子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E6%B1%87%E7%BC%96%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.2.</span> <span class="toc-text">
+          调用汇编函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">
+          调用约定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">
+          例子</span></a></li></ol></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/image/42197951.png" alt="avatar"></div><p class="sidebar-ov-author__text">如果不是擅长的领域那么就不要随意发表意见,老老实实做事,实践是检验真理的唯一标准</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">5</div><div class="sidebar-ov-state-item__name">Archives</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">4</div><div class="sidebar-ov-state-item__name">Categories</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">6</div><div class="sidebar-ov-state-item__name">Tags</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">You have read </span><span class="sidebar-reading-info__num">0</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2020</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>QRQ</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.0.0</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.1.1</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.1.1"></script><script src="/js/stun-boot.js?v=2.1.1"></script><script src="/js/scroll.js?v=2.1.1"></script><script src="/js/header.js?v=2.1.1"></script><script src="/js/sidebar.js?v=2.1.1"></script></body></html>
