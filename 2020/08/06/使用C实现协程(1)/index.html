@@ -6,7 +6,7 @@
 <meta property="og:description" content="使用C实现协程       文章参考轮子哥的教程以及风云的博客可以对C&#x2F;C++协程有个大概了解:Why c++ coroutine？Why libgo？                     为什么要使用协程       协程切换的代价更低,速度更快(ns级别)，协程所占用的资源更少。协程的切换完全在用户状态下进行,线程的切换需要在内核空间完成(两次内核态与用户态的切换是主">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-08-06T09:42:15.000Z">
-<meta property="article:modified_time" content="2020-08-12T09:10:20.458Z">
+<meta property="article:modified_time" content="2020-08-12T09:59:00.691Z">
 <meta property="article:author" content="QRQ">
 <meta property="article:tag" content="协程">
 <meta property="article:tag" content="C">
@@ -58,7 +58,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.0.0"></he
 <li>有栈协程</li>
 <li>使用非共享栈,每个协程创建自己独立的栈</li>
 <li>实现协程之间类似golang的通道的功能</li>
-<li>初步使用ucontext系列函数,之后再基于x86_64汇编实现上下文交换函数</li>
+<li>初步使用ucontext系列函数,之后再基于x86_64汇编实现上下文交换函数<blockquote>
+<a href="/2020/08/07/%E5%9C%A8C%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B1%87%E7%BC%96/" title="在C程序中使用汇编">在C程序中使用汇编</a>
+</blockquote>
+</li>
 </ul>
 <p>尝试实现</p>
 <ul>
