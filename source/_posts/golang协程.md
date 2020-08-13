@@ -61,7 +61,7 @@ func main() {
 
 输出的效果和时间线类似于
 
-![](./golang协程/Goroutines-explained.png)
+![](Goroutines-explained.png)
 
 ## golang的信道
 
