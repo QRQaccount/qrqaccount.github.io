@@ -11,6 +11,8 @@ categories:
 
 更为详细的说明参考[GitHub Docs](https://docs.github.com/cn)
 
+<!-- more -->
+
 ## 仓库
 
 在项目的开始到结束，我们会有两种仓库。一种是源仓库（origin），一种是开发者仓库,开发者仓库由源仓库fork而来
@@ -113,6 +115,6 @@ categories:
 
 如果没有问题就将代码合并到源仓库的`dev`分支
 
-![](git-model@2x.png)
+![](git-model.png)
 
 <center>图片来源https://github.com/livoras/blog/issues/7</center>
