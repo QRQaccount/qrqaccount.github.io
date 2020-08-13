@@ -27,7 +27,125 @@ var CONFIG = {
   sourcePath: {"js":"js","css":"css","images":"images"},
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.0.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Tags</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">QRQ's Blog</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/08/07/%E5%9C%A8C%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B1%87%E7%BC%96/">在C程序中使用汇编</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-07</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-08-12</span></span></div></header><div class="post-body"><div class="post-excerpt"><h1 id="在c中使用汇编"   >
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.0.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Tags</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">QRQ's Blog</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/08/13/%E4%BD%BF%E7%94%A8github%E7%BB%84%E7%BB%87%E9%A1%B9%E7%9B%AE/">使用github组织项目</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-13</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-08-13</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="使用github组织项目"   >
+          <a href="#使用github组织项目" class="heading-link"><i class="fas fa-link"></i></a>使用github组织项目</h1>
+      
+<p>更为详细的说明参考<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://docs.github.com/cn" >GitHub Docs</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h2 id="仓库"   >
+          <a href="#仓库" class="heading-link"><i class="fas fa-link"></i></a>仓库</h2>
+      
+<p>在项目的开始到结束，我们会有两种仓库。一种是源仓库（origin），一种是开发者仓库,开发者仓库由源仓库fork而来</p>
+
+        <h3 id="源仓库"   >
+          <a href="#源仓库" class="heading-link"><i class="fas fa-link"></i></a>源仓库</h3>
+      
+<p>源仓库仅有项目管理员对其操作<br>源仓库起到的作用:</p>
+<ul>
+<li>汇总各个开发者的代码</li>
+<li>存放趋于稳定和可发布的代码</li>
+</ul>
+
+        <h3 id="开发者仓库"   >
+          <a href="#开发者仓库" class="heading-link"><i class="fas fa-link"></i></a>开发者仓库</h3>
+      
+<p>开发者仓库独立于源仓库，由源仓库fork而来。开发者在自己的仓库完成开发工作后源仓库发送<code>pull request</code>，请求合并自己的代码</p>
+
+        <h2 id="分支"   >
+          <a href="#分支" class="heading-link"><i class="fas fa-link"></i></a>分支</h2>
+      
+<p>在开发项目时有两类分支,永久分支和临时分支</p>
+
+        <h3 id="永久分支"   >
+          <a href="#永久分支" class="heading-link"><i class="fas fa-link"></i></a>永久分支</h3>
+      
+<ul>
+<li><code>master</code>分支:用于存放经过测试的稳定的代码，每一次<code>master</code>更新都代表新的版本发布</li>
+<li><code>devlopment</code>分支:从master分支分离出来，用于存放基本稳定的代码，即开发分支</li>
+</ul>
+
+        <h3 id="临时分支"   >
+          <a href="#临时分支" class="heading-link"><i class="fas fa-link"></i></a>临时分支</h3>
+      
+<ul>
+<li><code>feature</code>分支:特性分支。用于项目开发功能</li>
+<li><code>hotfix</code>分支:若产品已经发布,发现紧急bug通过此分支修改后同步到<code>master</code>分支和<code>devlopment</code>分支里</li>
+<li><code>release</code>分支</li>
+</ul>
+
+        <h2 id="从创建到完工"   >
+          <a href="#从创建到完工" class="heading-link"><i class="fas fa-link"></i></a>从创建到完工</h2>
+      
+
+        <h3 id="第一步"   >
+          <a href="#第一步" class="heading-link"><i class="fas fa-link"></i></a>第一步</h3>
+      
+<p>由项目的管理者创建一个源仓库，以xxx\abc为例。并初始化两个永久性分支<code>master</code>和<code>devlopment</code></p>
+
+        <h3 id="第二步"   >
+          <a href="#第二步" class="heading-link"><i class="fas fa-link"></i></a>第二步</h3>
+      
+<p>从源仓库fork到自己的账户中</p>
+
+        <h3 id="第三步"   >
+          <a href="#第三步" class="heading-link"><i class="fas fa-link"></i></a>第三步</h3>
+      
+<p>从自己的仓库中clone到本地</p>
+
+        <h3 id="第四步"   >
+          <a href="#第四步" class="heading-link"><i class="fas fa-link"></i></a>第四步</h3>
+      
+<p>构建新的<code>feature</code>分支。以添加一个&quot;Add&quot;功能为例</p>
+<ul>
+<li>
+<p>首先切换到<code>dev</code>分支</p>
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout devlop</span><br></pre></td></tr></table></div></figure>
+</li>
+<li>
+<p>创建相应<code>feature</code>分支</p>
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature-add</span><br></pre></td></tr></table></div></figure>
+</li>
+<li>
+<p>进行开发</p>
+</li>
+<li>
+<p>提交更改</p>
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;finish add feature&quot;</span></span><br></pre></td></tr></table></div></figure>
+</li>
+<li>
+<p>切换回<code>dev</code>分支</p>
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout devlop</span><br></pre></td></tr></table></div></figure>
+</li>
+<li>
+<p>将功能合并到<code>dev</code>分支</p>
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --no-ff feature-add</span><br></pre></td></tr></table></div></figure>
+</li>
+<li>
+<p>删除<code>feature</code>分支</p>
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d feature-add</span><br></pre></td></tr></table></div></figure>
+</li>
+<li>
+<p>将本地修改提交自己的仓库</p>
+</li>
+</ul>
+
+        <h3 id="第五步"   >
+          <a href="#第五步" class="heading-link"><i class="fas fa-link"></i></a>第五步</h3>
+      
+<p>在完成自身<code>dev</code>分支的开发后，可以请求管理员将自己的仓库的<code>dev</code>分支合并到源仓库的<code>dev</code>分支中</p>
+
+        <h3 id="第六步"   >
+          <a href="#第六步" class="heading-link"><i class="fas fa-link"></i></a>第六步</h3>
+      
+<p>管理员测试，合并</p>
+<ul>
+<li>对代码review</li>
+<li>创建测试分支进行测试</li>
+</ul>
+<p>如果没有问题就将代码合并到源仓库的<code>dev</code>分支</p>
+<p><img src="git-model@2x.png" alt="" /></p>
+<center>图片来源https://github.com/livoras/blog/issues/7</center></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/08/07/%E5%9C%A8C%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B1%87%E7%BC%96/">在C程序中使用汇编</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-07</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-08-12</span></span></div></header><div class="post-body"><div class="post-excerpt"><h1 id="在c中使用汇编"   >
           <a href="#在c中使用汇编" class="heading-link"><i class="fas fa-link"></i></a>在C中使用汇编</h1>
       
 
@@ -37,7 +155,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.0.0"></he
 <ul>
 <li>即使是C语言也无法操作的硬件，如寄存器</li>
 <li>使用C后性能依旧不够,需要使用汇编进行优化</li>
-</ul></div><div class="post-readmore"><a class="post-readmore__link" href="/2020/08/07/%E5%9C%A8C%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B1%87%E7%BC%96/"><span class="post-readmore__text">Read More</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/08/06/%E4%BD%BF%E7%94%A8C%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B(1)/">使用C实现协程(一)</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-06</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-08-12</span></span></div></header><div class="post-body"><div class="post-excerpt"><h1 id="使用c实现协程"   >
+</ul></div><div class="post-readmore"><a class="post-readmore__link" href="/2020/08/07/%E5%9C%A8C%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B1%87%E7%BC%96/"><span class="post-readmore__text">Read More</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/08/06/%E4%BD%BF%E7%94%A8C%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B(1)/">使用C实现协程(一)</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-06</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-08-13</span></span></div></header><div class="post-body"><div class="post-excerpt"><h1 id="使用c实现协程"   >
           <a href="#使用c实现协程" class="heading-link"><i class="fas fa-link"></i></a>使用C实现协程</h1>
       
 <p>文章参考<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25993392" >轮子哥的教程</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>以及<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://blog.codingnow.com/2012/07/c_coroutine.html" >风云的博客</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><br>可以对C/C++协程有个大概了解:<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://my.oschina.net/yyzybb/blog/1817226" >Why c++ coroutine？Why libgo？</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
@@ -62,7 +180,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.0.0"></he
 <li><code>git push -u [指定默认主机名] [本地分支名]:[远程分支名]</code>这样可以添加一个默认的主机，在之后的<code>git push</code>中可以不再使用参数</li>
 </ul>
 </li>
-</ol></div><div class="post-readmore"><a class="post-readmore__link" href="/2020/08/06/git%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"><span class="post-readmore__text">Read More</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/08/05/golang%E5%8D%8F%E7%A8%8B/">golang协程</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-05</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-08-07</span></span></div></header><div class="post-body"><div class="post-excerpt"><h1 id="golang协程"   >
+</ol></div><div class="post-readmore"><a class="post-readmore__link" href="/2020/08/06/git%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"><span class="post-readmore__text">Read More</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/08/05/golang%E5%8D%8F%E7%A8%8B/">golang协程</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-05</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-08-13</span></span></div></header><div class="post-body"><div class="post-excerpt"><h1 id="golang协程"   >
           <a href="#golang协程" class="heading-link"><i class="fas fa-link"></i></a>golang协程</h1>
       
 <p>协程可以理解为一种用户态的轻量级线程。协程类似于线程，但与线程有区别。协程并不受操作系统内核控制而是完全由程序所控制，即在用户态执行。例如在生产者-消费者模型中，可以由用户决定在什么时候暂停程序。</p>
@@ -85,4 +203,4 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.0.0"></he
 <p>第一篇博客<br />
 Yeah~<br />
 电脑的记性比人好</p>
-</div></div></article></section><nav class="paginator"><div class="paginator-inner"><span class="page-number current">1</span></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/image/42197951.png" alt="avatar"></div><p class="sidebar-ov-author__text">如果不是擅长的领域那么就不要随意发表意见,老老实实做事,实践是检验真理的唯一标准</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/QRQaccount" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="1877794238" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">5</div><div class="sidebar-ov-state-item__name">Archives</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">4</div><div class="sidebar-ov-state-item__name">Categories</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">6</div><div class="sidebar-ov-state-item__name">Tags</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2020</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>QRQ</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.0.0</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.1.1</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.1.1"></script><script src="/js/stun-boot.js?v=2.1.1"></script><script src="/js/scroll.js?v=2.1.1"></script><script src="/js/header.js?v=2.1.1"></script><script src="/js/sidebar.js?v=2.1.1"></script></body></html>
+</div></div></article></section><nav class="paginator"><div class="paginator-inner"><span class="page-number current">1</span></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/image/42197951.png" alt="avatar"></div><p class="sidebar-ov-author__text">实践是检验真理的唯一标准</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/QRQaccount" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="1877794238" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">6</div><div class="sidebar-ov-state-item__name">Archives</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">4</div><div class="sidebar-ov-state-item__name">Categories</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">6</div><div class="sidebar-ov-state-item__name">Tags</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2020</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>QRQ</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.0.0</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.1.1</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.1.1"></script><script src="/js/stun-boot.js?v=2.1.1"></script><script src="/js/scroll.js?v=2.1.1"></script><script src="/js/header.js?v=2.1.1"></script><script src="/js/sidebar.js?v=2.1.1"></script></body></html>
