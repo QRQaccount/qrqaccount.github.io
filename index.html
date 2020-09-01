@@ -27,62 +27,14 @@ var CONFIG = {
   sourcePath: {"js":"js","css":"css","images":"images"},
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.0.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Tags</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">QRQ's Blog</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/08/28/%E4%BD%BF%E7%94%A8C%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B-%E4%BA%8C/">使用C实现协程(二)</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-28</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-08-29</span></span></div></header><div class="post-body"><div class="post-excerpt">
-        <h1 id="使用c实现协程二"   >
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.0.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Tags</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">QRQ's Blog</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/08/28/%E4%BD%BF%E7%94%A8C%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B-%E4%BA%8C/">使用C实现协程(二)</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-28</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-09-01</span></span></div></header><div class="post-body"><div class="post-excerpt"><h1 id="使用c实现协程二"   >
           <a href="#使用c实现协程二" class="heading-link"><i class="fas fa-link"></i></a>使用C实现协程(二)</h1>
       
 
         <h2 id="协程的组成结构"   >
           <a href="#协程的组成结构" class="heading-link"><i class="fas fa-link"></i></a>协程的组成结构</h2>
       
-<p>协程的基本组成部分可以分为以下这些</p>
-
-        <h3 id="调度器"   >
-          <a href="#调度器" class="heading-link"><i class="fas fa-link"></i></a>调度器</h3>
-      
-<p>用以调度各个协程</p>
-
-        <h3 id="协程"   >
-          <a href="#协程" class="heading-link"><i class="fas fa-link"></i></a>协程</h3>
-      
-<p>我们将协程分为主协程和普通协程.普通协程由主协程或其他普通协程创建</p>
-
-        <h4 id="协程私有栈"   >
-          <a href="#协程私有栈" class="heading-link"><i class="fas fa-link"></i></a>协程私有栈</h4>
-      
-<p>用于保存协程数据的私有栈。</p>
-
-        <h3 id="协程共享栈"   >
-          <a href="#协程共享栈" class="heading-link"><i class="fas fa-link"></i></a>协程共享栈</h3>
-      
-<p>一块单独分配出来的空间，当协程以使用共享栈的方式创建的时候，会使用共享栈。在协程间进行切换的时候会将其中的数据换出再换如正在运行的协程的数据</p>
-
-        <h3 id="协程控制块"   >
-          <a href="#协程控制块" class="heading-link"><i class="fas fa-link"></i></a>协程控制块</h3>
-      
-<p>每个协程都有一个结构体变量用于记录协程的基本信息</p>
-<ul>
-<li>协程的名称</li>
-<li>协程的编号</li>
-<li>协程所对应的主协程</li>
-<li>协程的栈空间的分配方式</li>
-<li>协程的栈的范围</li>
-<li>协程的函数指针</li>
-</ul>
-
-        <h2 id="实现的api"   >
-          <a href="#实现的api" class="heading-link"><i class="fas fa-link"></i></a>实现的API</h2>
-      
-<ul>
-<li>coroutine_init 创建一个主协程并返回控制块句柄</li>
-<li>coroutine_remuse 唤醒一个指定的被挂起的协程</li>
-<li>coroutine_yeild 挂起指定的协程</li>
-<li>coroutine_create 创建一个coroutine并返回协程控制块的句柄</li>
-<li>coroutine_status 查看指定的协程的状态</li>
-<li>coroutine_runing 返回目前正处于运行态的协程控制块句柄</li>
-<li>coroutine_delete 结束指定的协程，若使用共享栈则清空该协程在共享栈中占用的空间。若使用私有栈则释放私有栈空间。若指定的协程为主协程则会结束所有被这个主协程创建的普通协程并释放这些协程的私有栈空间</li>
-</ul>
-</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/08/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-28</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-08-28</span></span></div></header><div class="post-body"><div class="post-excerpt">
+<p>协程的基本组成部分可以分为以下这些</p></div><div class="post-readmore"><a class="post-readmore__link" href="/2020/08/28/%E4%BD%BF%E7%94%A8C%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B-%E4%BA%8C/"><span class="post-readmore__text">Read More</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/08/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2020-08-28</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2020-08-28</span></span></div></header><div class="post-body"><div class="post-excerpt">
         <h1 id="设计模式"   >
           <a href="#设计模式" class="heading-link"><i class="fas fa-link"></i></a>设计模式</h1>
       
