@@ -7,9 +7,7 @@ categories:
 - 开发工具
 ---
 
-# git的常用场景总结
-
-## 初始化项目并提交
+# 初始化项目并提交
 
 1. `git init` 初始化项目
 
@@ -25,9 +23,9 @@ categories:
      
      <!-- more -->
 
-## 分支代码合并
+# 分支代码合并
 
-### 使用merge
+## 使用merge
 
 以将分支dev代码合并到master分支为例
 
@@ -40,7 +38,7 @@ categories:
 7. `git checkout dev` 切换回dev分支进行开发
    - `git checkout [hash]` 切换回指定历史版本 
 
-### 使用rebase
+## 使用rebase
 
 以master分支经过一次hotfix后将master分支合并到dev为例
 
@@ -51,23 +49,23 @@ categories:
 3. `git rebase master` 
 4. 如果有冲突，解决之后根据提示使用`git add .`保存更改，但是不要提交，而是使用`git rebase --continue`，这时候commit ID又会回到dev分支
 
-## 删除分支
+# 删除分支
 
-### 删除本地分支
+## 删除本地分支
 
 - `git branch -d [分支名称]` -d即--delete删除分支时,该分支必须完全和它的上游分支完成merge,如果没有上游分支,必须要和HEAD完全merge
 - `git branch -D [分支名称]` --delete --force可以在不检查merge状态的情况下删除分支
 - `git branch -f [分支名称]` --force将当前branch重置到初始状态
 
-### 删除远程分支
+## 删除远程分支
 
 `git push origin --delete branch` 会一同删除追踪分支
 
-### 删除追踪分支
+## 删除追踪分支
 
 `git branch --delete --remotes <remote>/<branch>` 可以删除追踪分支,该操作并没有真正删除远程分支,而是删除的本地分支和远程分支的关联关系
 
-### 删除已经合并到master的分支
+## 删除已经合并到master的分支
 
 `git branch --merged master | grep -v '^[ *]*master$' | xargs git branch -d`<br>*原理：* 
 
