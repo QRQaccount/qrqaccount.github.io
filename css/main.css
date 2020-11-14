@@ -3066,9 +3066,7 @@ mjx-container[display="true"] + br {
 }
 body {
   background: url("/images/background_image.png");
-  background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: auto;
   background-position: 50% 50%;
 }
 .post {
