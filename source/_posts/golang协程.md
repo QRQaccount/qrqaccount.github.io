@@ -146,7 +146,7 @@ func (p Producer) work(Box chan Product) {
 	}
 
 }
-
+c
 type Producer struct {
 	No int
 }
